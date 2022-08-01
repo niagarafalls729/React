@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import Libray from './chapter_03/Libray';
+import tick from './chapter_03/tick'; 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Libray />
+    <Libray/>
+    <tick/>
   </React.StrictMode>
 );
 

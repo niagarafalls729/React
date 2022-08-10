@@ -1,6 +1,6 @@
-import "./App.css";
+import AppModuleStyles from "./AppModule.css";
 import AliasImportNameHello  from './component/Heelo';
-import Welcome from "./component/Welcome";
+
 
 //모든 컴포넌트는 함수명은 대문자.
 function App() {
@@ -11,12 +11,10 @@ function App() {
   }
   return (
     <div className="App">
-      
-      <h1 style={{ color: "red", backgroundColor: "blue" }}>hello , {name} </h1>
-      <h2><AliasImportNameHello/></h2>
-      <h3><Welcome></Welcome></h3>
-      <a href={naver.url}>{naver.name}</a>
-      
+     <h1>dd</h1>
+     <AliasImportNameHello></AliasImportNameHello>
+     <AliasImportNameHello></AliasImportNameHello>
+     <AliasImportNameHello></AliasImportNameHello>
     </div>
   );
 }

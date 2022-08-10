@@ -2,7 +2,10 @@
 //     <p>Hello</p>
 // };
 
-import World from "./World";
+import { useState } from "react";
+
+ 
+
 
 // export default Hello;
 
@@ -14,8 +17,24 @@ import World from "./World";
 // export default Hello;
 // 위에 2가지 방식도 사용가능 
 export default function Heelo(){
-    console.log("DDDD");
+    
+    //let name = "JISU";
+    const [name,  setName] = useState( 'JISU초기값');
 
-    return <p>Hello.js 입니다 <World></World></p>;
+    function changeName() {
+
+        
+        setName(name === "JISU" ? "JISUSUSU" : "JISU"); 
+    }
+     
+
+    return(
+        <div>
+            <h1>Hello.js 임</h1>
+            <h1>컴포넌트 속성값</h1>
+            <h2>{name}</h2>
+            <button onClick={changeName}>changeName</button> 
+        </div>    
+    );
 }
 

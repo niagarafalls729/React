@@ -107,6 +107,7 @@ function App() {
   }
   var content,
     create = null;
+  let contextControl = null;
   if (mode === "WELCOME") {
     content = <Article title="Welcome" body="Hello, Web"></Article>;
   } else if (mode === "READ") {
@@ -121,6 +122,7 @@ function App() {
     );
 
     content = <Article title={Ctitle} body={Cbody}></Article>;
+    contextControl = <a href={"/upadate"+_id}>Update</a>;
   } else if (mode === "CREATE") {
     create = (
       <div>
@@ -168,7 +170,10 @@ function App() {
         {" "}
         create{" "}
       </a>
+      
       {create}
+      {contextControl}
+
     </div>
   );
 }

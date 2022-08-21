@@ -58,9 +58,11 @@ function Nav(props) {
     </nav>
   );
 }
+
 function App() {
   var inputUTitle,
-  inputUContent = null;
+  inputUContent,
+  inputNo = null;
   function onChangeMode111() {
     setMode("WELCOME");
     console.log(topics.length);
@@ -99,6 +101,21 @@ function App() {
     { id: 2, title: "CSS", body: "CSS is .." },
     { id: 3, title: "JS", body: "JS is .." },
   ]);
+  function fn_update() {
+    
+    console.log("update:::"+_id+inputUContent,inputUTitle);
+    //setTopics( [ ...topics,{  id: _id, title: inputUTitle, body: inputUContent } ] );
+    for ( let i = 0; i < topics.length; i++) {
+      //inputNo
+      if(topics[i] === inputNo){
+        setTopics( [ {  id: _id, title: inputUTitle, body: inputUContent } ] );
+      }else{
+
+      }
+    }
+
+    setMode("WELCOME");
+  }  
   function fn_create() {
 
     console.log(inputUContent,inputUTitle);
@@ -106,7 +123,8 @@ function App() {
     setMode("WELCOME");
   }
   var content,
-    create = null;
+    create = null,
+    update = null;
   let contextControl = null;
   if (mode === "WELCOME") {
     content = <Article title="Welcome" body="Hello, Web"></Article>;
@@ -122,7 +140,12 @@ function App() {
     );
 
     content = <Article title={Ctitle} body={Cbody}></Article>;
-    contextControl = <a href={"/upadate"+_id}>Update</a>;
+    contextControl = <a href={"/upadate"+_id} onClick={event=>{
+      event.preventDefault();
+      inputNo =_id;
+      setMode('UPDATE');
+
+    }}>Update</a>;
   } else if (mode === "CREATE") {
     create = (
       <div>
@@ -144,6 +167,31 @@ function App() {
         ></input>
         <div>
           <button onClick={fn_create}>글등록</button>
+          <button>취소</button>
+        </div>
+      </div>
+    );
+  } else if(mode === "UPDATE"){
+    update = (
+      <div>
+        <input
+          type="text"
+          placeholder="제목"
+          id="uTitle"
+          onChange={(e) => {
+            inputChange(e);
+          }}
+        ></input>
+        <input
+          type="text"
+          id="uContent"
+          placeholder="내용"
+          onChange={(e) => {
+            inputChange(e);
+          }}
+        ></input>
+        <div>
+          <button onClick={fn_update}>글수정</button>
           <button>취소</button>
         </div>
       </div>
@@ -173,6 +221,7 @@ function App() {
       
       {create}
       {contextControl}
+      {update}
 
     </div>
   );

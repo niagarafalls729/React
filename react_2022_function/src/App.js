@@ -94,47 +94,26 @@ function App() {
   // const setMode = _mode[1];
   const [mode, setMode] = useState("WELCOME");
   const [_id, set_id] = useState(null);
+ 
+
   const [topics, setTopics] = useState([
     { id: 1, title: "HTML", body: "html is .." },
     { id: 2, title: "CSS", body: "CSS is .." },
     { id: 3, title: "JS", body: "JS is .." },
   ]);
-  
-
-
-  function fn_delete() {
-    //alert(JSON.stringify(topics));
-     
-    const newTopics = [];
-
-    for ( let i = 0; i < topics.length; i++) {
-      if(topics[i].id != _id ){
-        newTopics.push(topics[i]);
-      }
-    }
-    console.log(JSON.stringify(newTopics));
-    setTopics(newTopics);
-    setMode("WELCOME");
-  }  
-
   function fn_update() {
-    const newTopics = [...topics];
-    console.log("update:::"+_id+inputUTitle,inputUContent);
+    
+    console.log("update:::"+_id+inputUContent,inputUTitle);
     //setTopics( [ ...topics,{  id: _id, title: inputUTitle, body: inputUContent } ] );
-    
-    
-    console.log(newTopics);
-    
-    for ( let i = 0; i < newTopics.length; i++) {
+    for ( let i = 0; i < topics.length; i++) {
       //inputNo
-      if(newTopics[i].id === _id){
-        newTopics[i].id= _id;
-        newTopics[i].title= inputUTitle;
-        newTopics[i].body=inputUContent;
-        
+      if(topics[i] === inputNo){
+        setTopics( [ {  id: _id, title: inputUTitle, body: inputUContent } ] );
+      }else{
+
       }
     }
-    console.log(newTopics);
+
     setMode("WELCOME");
   }  
   function fn_create() {
@@ -147,15 +126,12 @@ function App() {
     create = null,
     update = null;
   let contextControl = null;
-  let deletetitle,deleteControl = null;
   if (mode === "WELCOME") {
     content = <Article title="Welcome" body="Hello, Web"></Article>;
   } else if (mode === "READ") {
     let Ctitle,
       Cbody = null;
-      topics.map((aaa, index) =>
-      aaa.id === _id ? (aaa.id = _id) : ""
-    );
+
     topics.map((aaa, index) =>
       aaa.id === _id ? (Ctitle = topics[index].title) : ""
     );
@@ -170,13 +146,6 @@ function App() {
       setMode('UPDATE');
 
     }}>Update</a>;
-
-    deletetitle =  <a href={"/delete"+_id} onClick={event=>{
-      event.preventDefault();
-      inputNo =_id;
-      setMode('DELETE');
-
-    }}>DELETE</a>;
   } else if (mode === "CREATE") {
     create = (
       <div>
@@ -227,8 +196,6 @@ function App() {
         </div>
       </div>
     );
-  } else if (mode === "DELETE"){
-     fn_delete();
   }
 
   return (
@@ -255,11 +222,9 @@ function App() {
       {create}
       {contextControl}
       {update}
-      {deletetitle}
-      {deleteControl}
+
     </div>
   );
 }
 
 export default App;
-

@@ -1,15 +1,13 @@
-import './App.css'
-
 function App() {
   return (
     <div className="App">
       <h1>test233</h1>
-      <Fn_ProductsList/> 
+      <ProductsList/> 
     </div>
   );
 }
 
-function Fn_ProductsList(){
+function ProductsList(props){
 
   const ProductsList ={
     products: [
@@ -34,14 +32,13 @@ function Fn_ProductsList(){
         id: 104,
       },
     ],
-  } 
+  }
+
+  /* num.map(i =><p>{i}</p>)  */
   
-  const title = ProductsList.products.map(products =><div key={products.id}><p className="title">{products.title}</p><p>{products.price}</p></div>)
-
- 
+  const Title = ProductsList.map(products.title => <p>{products.title} </p>)
   return <div>
-    {title}
-
+    {Title}
   </div>
 }
 export default App;

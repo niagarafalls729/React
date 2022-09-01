@@ -15,7 +15,7 @@ const ShowState = ({ number, text }) => {
   //const showNumber = getNumber(number);
   const showNumber = useMemo(()=>getNumber(number),[number]);
   const showText =   useMemo(()=>getText(text),[text] );
-
+ 
   return (
     <div className="info-wrapper">
       {showNumber} <br />

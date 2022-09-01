@@ -6,7 +6,8 @@ function Time(props) {
   const [hour, setHour] = useState(today.getHours());
   const [min, setMin] = useState(today.getMinutes());
   const [sec, setSec] = useState(today.getSeconds()); 
-  console.log("렌더링이 됩니다..?")//렌더링이 잘 되는지 확인용! 꼭 넣고 진행해주세요.
+
+//  console.log("렌더링이 됩니다..?")//렌더링이 잘 되는지 확인용! 꼭 넣고 진행해주세요.
 
   // 컴포넌트가 업데이트 될 때마다 매번 실행
   // useEffect(()=>{
@@ -22,7 +23,15 @@ function Time(props) {
   // useEffect(()=>{
   //   console.log('hello world');
   // }, [변수1, 변수2...])
- 
+  useEffect(()=>{
+     
+      setToday(new Date());
+    return()=>{
+      setSec(today.getSeconds());
+      setMin(today.getMinutes());
+      setHour(today.getHours());
+    }
+  },[today])
 
 
   return (
@@ -35,6 +44,7 @@ function Time(props) {
 }
 
 function App() {
+  
   return (
     <div>
       <Time/>

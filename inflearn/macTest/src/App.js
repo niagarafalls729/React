@@ -1,10 +1,19 @@
 import "./App.css";
 
-import { useState, useRef ,useMemo } from "react";
-import MEMOO from "./memoo" 
+import { useState, useRef, useMemo, useEffect } from "react";
+import MEMOO from "./memoo";
+
+function HardCurl(num) {
+  console.log("HardCurl!" + JSON.stringify(num));
+  return (
+    <div>
+      <h1>값은 : {num + 1}</h1>
+    </div>
+  );
+}
 
 function App() {
-  console.log("DD");
+  console.log("function App() {");
   const [useVal, setUseVal] = useState("초기값");
   const nameInput = useRef();
   const MrefBody = useRef();
@@ -16,30 +25,42 @@ function App() {
   });
 
   function fn_on(inValue) {
-    if(inValue ===1 ){
-    nameInput.current.value.length > 0
-      ? setUseVal(nameInput.current.value)
-      : setUseVal(useVal);
-    }else if (inValue ===2){
-      setUseMval( 
-        { title : MrefTitle.current.value
-        , contents : MrefBody.current.value }
-      )
-    }else{
-      setMemovalue(
-        { ...memovalue, val1 : memovalue.val1}
-      )
+    if (inValue === 1) {
+      nameInput.current.value.length > 0
+        ? setUseVal(nameInput.current.value)
+        : setUseVal(useVal);
+    } else if (inValue === 2) {
+      setUseMval({
+        title: MrefTitle.current.value,
+        contents: MrefBody.current.value,
+      });
+    } else {
+      setMemovalue({ ...memovalue, val1: memovalue.val1 });
     }
   }
-  const [memovalue ,setMemovalue] = useState(
-    {
-      val1 : "val1 b" ,
-      val2 : "val22" ,
-      val3 : "val333" ,
-      val4 : "val4444" ,
-    }
-  )
+  const [memovalue, setMemovalue] = useState({
+    val1: "val1 b",
+    val2: "val22",
+    val3: "val333",
+    val4: "val4444",
+  });
+  /*-------------------------------------
+   ** usememo
+   */
+  const [memoNum, setMemoNum] = useState(1);
+  const memoRef = useRef();
 
+  function fn_Change() {
+    setMemoNum(parseInt(memoRef.current.value));
+  }
+  //이렇게할경우 바로위 change 이벤트에서 setMemoNum를 탐 그다음 HardCurl계산을 한다치면 
+  // 업데이트 할때마다 HardCurl 함수를 탄다음 표기 해야하기에 부하가 발생할수있음.
+  // 확인방법은 밑에 주석풀고 다른거 state 값 변경될때 app()렌더링되니깐 그걸로 확인 간으
+  //const hardconst = HardCurl(parseInt(memoNum));
+  const hardconst = useMemo(()=>{
+    return HardCurl(parseInt(memoNum))
+  } ,[memoNum])
+  
   return (
     <div className="App">
       <h1>test233</h1>
@@ -51,10 +72,19 @@ function App() {
       <h3>useMval.contents ::{useMval.contents}</h3>
       <input ref={MrefTitle}></input>
       <input ref={MrefBody}></input>
-      <button onClick={()=>fn_on(2)}> 값 적용2</button>
+      <button onClick={() => fn_on(2)}> 값 적용2</button>
       <h1>--------------------</h1>
-      <MEMOO value={memovalue}/>
-      <button onClick={()=>fn_on(3)}> 값 적용2</button>
+      <MEMOO value={memovalue} />
+      <button onClick={() => fn_on(3)}> 값 적용2</button>
+      <h1>---------------usememo 완벽정리 초간단함 -----</h1>
+      <p>useMemoState 값 : {memoNum}</p>
+      <input
+        type="number"
+        value={memoNum}
+        onChange={() => fn_Change()}
+        ref={memoRef}
+      ></input>
+      <p>{hardconst}</p>
     </div>
   );
 }

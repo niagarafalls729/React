@@ -21,5 +21,5 @@ const memoo = react.memo(function memoo(props) {
     </div>
     
   )
-} );
+},  );
 export default memoo;

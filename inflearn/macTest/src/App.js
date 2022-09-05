@@ -1,13 +1,22 @@
 import "./App.css";
 
-import { useState, useRef, useMemo, useEffect } from "react";
+import {
+  useState,
+  useRef,
+  useMemo,
+  useEffect,
+  createContext,
+  useContext,
+} from "react";
 import MEMOO from "./memoo";
+import Jcontext from "./Jcontext";
 
+import { ContextStore } from "./store/ContextStore";
 function HardCurl(num) {
   console.log("HardCurl!" + JSON.stringify(num));
   return (
     <div>
-      <h1>값은 : {num + 1}</h1>
+      <h1>num + 1값은 : {num + 1}</h1>
     </div>
   );
 }
@@ -53,16 +62,26 @@ function App() {
   function fn_Change() {
     setMemoNum(parseInt(memoRef.current.value));
   }
-  //이렇게할경우 바로위 change 이벤트에서 setMemoNum를 탐 그다음 HardCurl계산을 한다치면 
+  //이렇게할경우 바로위 change 이벤트에서 setMemoNum를 탐 그다음 HardCurl계산을 한다치면
   // 업데이트 할때마다 HardCurl 함수를 탄다음 표기 해야하기에 부하가 발생할수있음.
   // 확인방법은 밑에 주석풀고 다른거 state 값 변경될때 app()렌더링되니깐 그걸로 확인 간으
   //const hardconst = HardCurl(parseInt(memoNum));
-  const hardconst = useMemo(()=>{
-    return HardCurl(parseInt(memoNum))
-  } ,[memoNum])
-  
+  const hardconst = useMemo(() => {
+    return HardCurl(parseInt(memoNum));
+  }, [memoNum]);
+/***************************************/
+// ContextStore 에서 파일을 따로 만든경우 
+// app 에서 바로해도 됨 근데 이런건 안하는게 좋겠지
+/***************************************/
+
+  ///
   return (
     <div className="App">
+      <h1>context </h1>
+      <ContextStore.Provider value="28">
+        <Jcontext />
+      </ContextStore.Provider>
+<h1>---------↓↓↓↓↓↓↓↓↓use State----------------</h1>
       <h1>test233</h1>
       <h1>{useVal}</h1>
       <input type="text" ref={nameInput}></input>

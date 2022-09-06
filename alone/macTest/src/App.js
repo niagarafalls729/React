@@ -10,7 +10,7 @@ import {
 } from "react";
 import MEMOO from "./memoo";
 import Jcontext from "./Jcontext";
-
+import Myinput from "./Myinput";
 import { ContextStore } from "./store/ContextStore";
 function HardCurl(num) {
   console.log("HardCurl!" + JSON.stringify(num));
@@ -74,6 +74,14 @@ function App() {
 // app 에서 바로해도 됨 근데 이런건 안하는게 좋겠지
 /***************************************/
 
+/***************************************/
+// forwardRef
+/***************************************/
+  const inputRef = useRef();
+
+  function fn_setFocusBtn(){
+    inputRef.current.focus()  
+  }
   ///
   return (
     <div className="App">
@@ -104,6 +112,8 @@ function App() {
         ref={memoRef}
       ></input>
       <p>{hardconst}</p>
+      <h1>---------↓↓↓↓↓↓↓↓↓Ref X forwardRef----------------</h1>
+      <Myinput ref={inputRef}/> <button onClick={fn_setFocusBtn}>setFocusBTN</button>
     </div>
   );
 }

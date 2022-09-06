@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState ,useReducer } from 'react'
+import {useState ,useReducer,useEffect } from 'react'
 
 
 
@@ -25,15 +25,27 @@ const reducer = (state, action) =>{
  
 function App() {
   const [num , setNum] = useState(0);
+  const [btnable, setBtnable] = useState(true);
+
   // 여기서 0 은 money의 초기값. 즉 useState() 안의 값이랑 똑같음. 어렵게 생각 ㄴㄴ 그러니 obj도 들어갈수있겠지 ?
   const [myMoney, moneyDispatch ] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    if(num > 0 ){
+      setBtnable(false)
+    }else{
+      setBtnable(true)
+    }
+    
+  }, [num]);
 
 
   return (
     <div className="App">
       <h1> useReducer 이용한 은행 </h1>
       <input type="number" step="1000" onChange={(e) => { setNum(parseInt(e.target.value)) }}/>
-      <button onClick={() => moneyDispatch({type: 'increment' , choicePay : {num} })}>예금</button>
+      <button onClick={() => moneyDispatch({type: 'increment' , choicePay : {num} }) } disabled={btnable}>예금</button>
+ 
       <button onClick={()=>{moneyDispatch({type: "decrement" , choicePay : {num}  })}}>출금</button>
       <br/>
       <h2>잔고 :  {myMoney.money}</h2>

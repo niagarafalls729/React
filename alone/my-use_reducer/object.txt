@@ -1,54 +1,75 @@
-함수
+Object
 
-1) 한번에 한작업에 집중
-읽기 쉽고 어떤 동작인지 알 수 있게 네이밍
-ex)
-showError
-- 에러를 보여주다.
-getName 
-- 이름을 가져오다.
-createUserData
-- 유저데이터 생성
-checkLogin
-- 로그인 여부 체크
+슈퍼맨은 이름은 클락이고 나이는 33살이다.
 
-1)
-function sayHello(){
-    console.log('Hello');
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+const superman = {
+    name : '클락',
+    age  : 33 ,
 }
-2)
-let sayHello = function(){
-    console.log('Hello');
+항상 나는 마지막에 쉼표 왜넣냐했더니 그냥 추후 수정편하게하기 위해서
+넣는거라는데 ? 
+
+접근 , 추가 ,삭제
+
+접근
+superman.name
+superman['age']
+
+추가.
+superman.gender = 'male';
+superman['hairColor'] = 'black';
+
+삭제
+delete superman.hairColor
+
+=============================
+
+Object 단축 값
+
+const name = '클락';
+const age = 33;
+
+
+const superman = {
+    name : name,
+    age : age,
+    gender : 'male',
 }
----------------------------
-두개의 차이점은 
-1) 은 어디서든 호출가능 (순서가 상관없음 인터프릭트언어)(호이스팅)
-2) let이기에 위에서 읽어가면서 하기에 그 이후에만 사용가능.
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
-화살표함수
-
-let add = function (num1, num2){
-    return num1 + num2;
+const superman = {
+    name,
+    age,
+    gender : 'male',
 }
 
-let add = (num1,num2) =>{
-    return num1 + num2;
-}
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-let add = (num1, num2) =>( 
-    num1+ num2;
-)
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓return 문이 한줄이면 () 도 생략가능
-let add = (num1, num2) => num1+ num2;
+여기서 만약 슈퍼맨에 값이 없는걸 표기하면 ?
 
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 인수도 1개라면 또 괄호 삭제 가능
-let add = num = 'number: ${num}'
+superman.birthDay;
+-> undefined
+// in 연산자를 사용하면 boolean 확인 가능.
+'birthDay' in superman
+// false
+'gender' in superman
+// true
 
-
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 반면 인수가 아예 없다면 삭제 불가능.
-let showError = () => {
-    alert('error');
-}
  
 
- 
+const Mike = {
+    name : "MIKE",
+    age: 30,
+}
+
+for( 아아아아아 in MIKE){
+    console.log(아아아아) // name, age
+    console.log(MIKE[아아아아]) // MIKE ,30
+}
+
+
+
+
+
+
+

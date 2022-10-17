@@ -1,0 +1,51 @@
+
+
+// forEach()
+
+ 
+
+// forEach 메서드는 객체나 배열 모두 --> 반복순회를 할수 있으며, 조건에 맞는 요소들만을 조건 검사하여 --> 새배열에 추가가 가능.
+
+let basket = [];
+let basket2 = [];
+let basket3 = [];
+
+let products = [
+    {name : '냉장고' , pricee: 1},
+    {name : 'TV' , pricee: 2},
+    {name : '전자레인지' , pricee: 3},
+    {name : '아일랜드식탁' , pricee: 4},
+    {name : '거실커튼' , pricee: 5},
+
+];
+
+products.forEach(function(ele) {
+    //조건검색
+    if(ele.pricee > 3 ){
+        console.log("3이상 물건"+ele.name)
+        basket.push(ele);
+    } 
+}) 
+console.log(basket)
+console.log("dd"+basket[0].name) 
+
+products.forEach((ele)=>basket2.push(ele))
+console.log(basket2)
+console.log("dd2"+basket2[0].name) 
+
+products.forEach((ele)=>{
+                 if(ele.pricee > 3){
+                     basket3.push(ele)
+                 } })
+                
+
+
+// filter()
+//filter 메서드를 사용하면 상황에 따라서는 forEach 메서드를 사용해서 조건 검색을 할 필요가 없는 경우가 있다.
+// 쉽게 말해 , filter메서드만으로 문제해결을 할수ㄷ잇다.라는뜻
+
+let filBasket = products.filter(function(ele){
+
+    return (ele.pricee > 3)
+
+})

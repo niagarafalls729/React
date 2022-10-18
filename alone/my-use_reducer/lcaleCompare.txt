@@ -1,0 +1,37 @@
+//map VS set
+
+js 의 map
+
+new Map();
+map.set( key, value)
+map.get( key)
+map.has( key)
+map.delete( key)
+map.clear()
+map.size
+ 
+
+console.log(newAR)
+
+const map1 = new Map();
+map1.set('bar', 'foo');
+
+map1.set('bar2', 'foo3');
+
+map1.set('bar4', 'foo4');
+map1.set('bar4', 'foo5');
+
+console.log(map1.get('bar')); 
+//=>"foot"
+const newAR = Array.from(map1)
+
+
+console.log(newAR); 
+//=> [["bar", "foo"], ["bar2", "foo3"], ["bar4", "foo5"]] 
+
+
+
+
+
+
+

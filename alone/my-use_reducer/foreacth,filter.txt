@@ -44,8 +44,43 @@ products.forEach((ele)=>{
 //filter 메서드를 사용하면 상황에 따라서는 forEach 메서드를 사용해서 조건 검색을 할 필요가 없는 경우가 있다.
 // 쉽게 말해 , filter메서드만으로 문제해결을 할수ㄷ잇다.라는뜻
 
+let products = [
+    {name : '냉장고' , pricee: 1},
+    {name : 'TV' , pricee: 2},
+    {name : '전자레인지' , pricee: 3},
+    {name : '아일랜드식탁' , pricee: 4},
+    {name : '거실커튼' , pricee: 5},
+
+];
+
 let filBasket = products.filter(function(ele){
 
     return (ele.pricee > 3)
 
 })
+let filBasket = products.filter(ele=> ele.pricee > 3)
+console.log("filter")
+console.log(filBasket)
+/////////////배열 값 비교, 값 확인 ?
+const currentDays = [2, 13, 18,23,30];
+
+const lastCrimeDays = [
+    '3-1-2020' ,
+    '3-3-2020' ,
+    '3-4-2020' ,
+    '3-5-2020' ,
+    '3-18-2020' ,
+    '3-21-2020' ,
+    '3-23-2020' ,
+    '3-31-2020' ,
+]
+
+const commmonCrimeDays = lastCrimeDays.filter(function(eee){
+    //겹치는거
+    return currentDays.includes(new Date(eee).getDate())
+    // 안겹치는거
+    return !currentDays.includes(new Date(eee).getDate())
+
+})
+
+console.log(commmonCrimeDays)

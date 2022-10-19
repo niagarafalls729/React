@@ -1,29 +1,77 @@
-Object.entries()메서드
+리듀스란....
 
-Object.entries()메서드는 순서가 매겨진 객체의 [key , value ]쌍을 배열로 반환.
+배열을 순회하면서 작업을 처리하고 결과를 만들어진걸 저장하는등등
+
+기본적으로 배열 요소에 대해서 리듀스 함수를 적용할수 있으며, 각요소에 대한 어떤 처리를 한값들을 누적시켜 하나의 값으로 줄일수 있다.
+
+사용법
+
+배열.reduce(함수(누적값, 현재값 ,인덱스 , 원본값 ), 초기값 )
+
+예제 1  학생 5명의 성적이 있는데 각 학생의 점수를 모두 더한 총합을 계산하시오
+
+const members = [
+    45, 32,55,22,11
+];
 
 
-const obj= {
 
-    1: '홍길동',
-    2: 20,
-    3: '한국'
-}
-1 정렬없이
+const reduceRTN = members.reduce(function(acc , cur ){
+    console.log(acc + "///" + cur)
+    return acc = cur + acc 
+
+} , 0 );
+//0 생략가능.
+console.log(reduceRTN)
+
+
+
+
+const numbers = [1,2,3,4,5,6];
+
+const result = numbers.reduce(function( acc , cur){
+    console.log(cur/2)
+    if( cur %2 == 1  ){
+        acc = acc + cur
+    }
+    return acc 
  
+})
 
-for(const[k,v] of Object.entries(obj)){
-    console.log("k  "+`${k} V: ${v}`)
-
-    console.log(k+"  "+ v)
-}
+console.log("----------------------------------")
+console.log(result)
+console.log("----------------------------------")
 
 
+const result = numbers.reduce(function( acc , cur){
+   
+    if( cur > 4  ){
+        acc = acc + cur
+    }
+    return acc 
  
-2 정렬 
-a 안에 0은 키값이고 뒤에가 값이니깐
-for(const[k,v] of Object.entries(obj).sort((a,b) => a[0].localeCompare(b[0]))){
-    console.log("k  "+`${k} V: ${v}`)
+}, 0 )
 
-    console.log(k+"  "+ v)
-}
+// 초기값 주의 
+
+
+
+//reduce 메서드 사용시 내부에서의 변화되는 값과 리턴값을 표로 나타내보시오.
+//이때 , 초깃값 설정은 없다라고 전제한다.
+
+
+const numbers = [0,1,2,3,4 ];
+
+const result = numbers.reduce(function(acc,cur,inx,originArr){
+    console.log("acc::::"+acc)
+    console.log("cur::::"+cur)
+    console.log("inx::::"+inx)
+    console.log("originArr::::"+originArr)
+    return acc+cur;
+})
+
+console.log("========================================")
+console.log("최종 리턴값:  "+result)
+console.log("========================================")
+
+

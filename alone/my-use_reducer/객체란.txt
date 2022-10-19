@@ -1,37 +1,69 @@
-//map VS set
 
-js 의 map
 
-new Map();
-map.set( key, value)
-map.get( key)
-map.has( key)
-map.delete( key)
-map.clear()
-map.size
+객체와 맵의 차이점 -> 다양한 자료형 허용(map)
+객체는 기본적으로 키(key)에 문자형이나 심볼형에 속하지 않는 값ㅇ르 사용하게되면 -> 문자열로 자동 형변환
+그러나 맵은 그렇지 않음
+
+
+const testOBJ = {1: '홍길동',2:'이순신'}
+
+console.log(testOBJ[1]) // 홍길동
+console.log(testOBJ["1"]) // 홍길동
+
+const map3 = new Map();
  
+map3.set('bar', 'foo');
 
-console.log(newAR)
+map3.set('bar2', 'foo3');
 
-const map1 = new Map();
-map1.set('bar', 'foo');
+map3.set('bar4', 'foo4');
+map3.set('bar4', 'foo5');
 
-map1.set('bar2', 'foo3');
-
-map1.set('bar4', 'foo4');
-map1.set('bar4', 'foo5');
-
-console.log(map1.get('bar')); 
-//=>"foot"
-const newAR = Array.from(map1)
+const iterator = map3.entries();
+console.log(map3.get("key1"))
 
 
-console.log(newAR); 
-//=> [["bar", "foo"], ["bar2", "foo3"], ["bar4", "foo5"]] 
+// 할때마다 한개씩 뒤로 . 
+console.log(iterator.next().value) 
+console.log(iterator.next().value)
+console.log(iterator.next().value)
+
+/*******************************************/
+// Spread Operator (깊은복사.)
+console.log("Spread Operator")
+const a = [...map3]
+
+console.log(a)
+
+
+/*******************************************/
+
+
+// for or 반복 출력
+console.log("for ...in ")
+
+for(let i in map3){
+    console.log(i)
+}
+console.log("for ...of ")
+for(let i of map3){
+    console.log(i)
+}
 
 
 
+/*******************************************/
 
+const testOBJ2 = {1: '홍길동',2:'이순신'}
 
+console.log("for ...in ")
 
+console.log("man obj")
+for(let i in testOBJ2){
+    console.log(i)
+}
 
+console.log("for ...of ")
+for(let i of testOBJ2){
+    console.log(i)
+}

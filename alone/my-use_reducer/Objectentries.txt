@@ -27,3 +27,38 @@ for(const[k,v] of Object.entries(obj).sort((a,b) => a[0].localeCompare(b[0]))){
 
     console.log(k+"  "+ v)
 }
+
+
+
+map 객체로 변환
+
+const someDate = {
+
+    1: {"name" : "홍길동1" , "age" : 20, "nationality": "korea" }
+    2: {"name" : "홍길동2" , "age" : 30, "nationality": "usa" }
+    3: {"name" : "홍길동3" , "age" : 40, "nationality": "canada" }
+}
+
+console.log(someDate) // obj
+데이터를 Map 객체로 변환 => entries() 사용
+const entries = Object.entries(someDate)
+console.log(entries)            //Array
+console.log(entries[0][1].age) 
+
+
+여기서 이제 map 으로 바꿀경우
+
+const jsonMap = new Map(entries);
+
+
+맵객체는 반복이 가능한 객체이며 내장된 iterator 반복자 덕분 --> for ..of 반복문 사용이 가능.
+
+for(let i of jsonMap){
+    console.log(i)
+}
+
+console.log("------------------forEach")
+
+jsonMap.forEach((value,key) => console.log(key+"/"+value) ) 
+jsonMap.forEach((value,key) => console.log(key+"/"+value.name) ) 
+jsonMap.forEach((value,key) => console.log(key+"/"+value.age) ) 

@@ -1,0 +1,12 @@
+.product .product-item .product-name {
+    width: 338px;
+    margin: 20px 0 10px;
+}
+
+/* 상품 이름 스타일 */
+.product-name {
+    font-size: 18px;
+    line-height: 22px;
+    width: 338px;
+    margin: 20px 0 10px;
+}
